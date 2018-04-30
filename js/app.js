@@ -24,5 +24,7 @@ $(document).ready(function() {
     });
   });
   /* guardando los datos */
-  
+  $('#save').click(function() {
+
+  });
 });
