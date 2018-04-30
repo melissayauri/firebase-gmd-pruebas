@@ -9,11 +9,30 @@
 </head>
 <body>
     <h1>Firebase</h1>
+    <button id="login">
+        Iniciar sesión con Google
+    </button>
+    <div id="root"></div>
 
 
     <!--Enlazando jquery-->
     <script type="text/javascript" src="vendors/js/jquery-3.2.1.min.js"></script>
-    <!--Enlazando archivo js-->
-    <script type="text/javascript" src="js/app.js"></script>
+   
+    <!--Enlazando firebase-->
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <!--Inicializando firebase-->
+    <script>
+        var config = {
+            apiKey: "AIzaSyBBur9iGdP0N0vlWlRnWxPjyMGR2nnPV90",
+            authDomain: "fir-gmd-pruebas.firebaseapp.com",
+            databaseURL: "https://fir-gmd-pruebas.firebaseio.com",
+            projectId: "fir-gmd-pruebas",
+            storageBucket: "fir-gmd-pruebas.appspot.com",
+            messagingSenderId: "701971426047"
+        };
+        firebase.initializeApp(config);
+    </script>
+     <!--Enlazando archivo js-->
+     <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
