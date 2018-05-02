@@ -25,6 +25,12 @@ $(document).ready(function() {
   });
   /* guardando los datos */
   $('#save').click(function() {
-
+    alert('listo');
+    /* Los datos se almacenan en la rama prueba */
+    firebase.database().ref('prueba').set({
+      nombre: 'melissa',
+      edad: '27 años',
+      profesion: 'electrónica'
+    });
   });
 });
