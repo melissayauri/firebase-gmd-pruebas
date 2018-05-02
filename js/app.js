@@ -9,6 +9,7 @@ $(document).ready(function() {
     messagingSenderId: '701971426047'
   };
   firebase.initializeApp(config);
+
   /* Inicializando el logeo mediante gmail */
   var provider = new firebase.auth.GoogleAuthProvider();
   /* evento para el botón logeo */
@@ -19,9 +20,9 @@ $(document).ready(function() {
       $('#login').hide();
       console.log(result.user);
       saveDate(result.user);
-      var name = `<p>${result.user.displayName}</p>`;
+      // var name = `<p>${result.user.displayName}</p>`;
       /* muestra el nombre al terminar de inciar sesión */
-      $('#root').append(name);
+      // $('#root').append(name);
     });
   });
 
@@ -31,10 +32,13 @@ $(document).ready(function() {
     var dataUser = {
       name: user.displayName,
       mail: user.email,
-      uid: user.uid
+      uid: user.uid,
+
     };
-    /* se aplica push para agregar a cada usuario */
-    firebase.database().ref('usuarios').push(dataUser);
+    /* se aplica push para agregar a cada usuario, genera otro usuario con el mismo nombre */
+    // firebase.database().ref('usuarios').push(dataUser);
+    /* se aplica para que solo actualice el usuario correspondiente */
+    firebase.database().ref('usuarios/' + user.uid).set(dataUser);
   };
   /* guardando los datos */
   $('#save').click(function() {
@@ -46,5 +50,11 @@ $(document).ready(function() {
       edad: '27 años',
       profesion: 'electrónica'
     });
+  });
+  /* imprimiendo cada usuario */
+  firebase.database().ref('usuarios').on('child_added', function(userInfo) {
+    var users = userInfo.val();
+    /*var names = `<div>${users.name}</div>`;
+    $('#root').append(names);*/
   });
 });
